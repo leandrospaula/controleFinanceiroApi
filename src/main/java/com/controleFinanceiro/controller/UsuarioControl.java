@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,11 +65,10 @@ public class UsuarioControl {
 		response.setDados(DTOConverter.converterUsuarioDTO(u));
 		return ResponseEntity.ok(response);
 	}
-
+	
 	@PostMapping()
 	public ResponseEntity<Resposta<UsuarioDTO>> criar(@Valid @RequestBody UsuarioDTO dto, BindingResult result) {
 		Resposta<UsuarioDTO> response = new Resposta<UsuarioDTO>();
-		dto.setSenha("123456");
 		Usuario u = DTOConverter.converterDTOUsuario(dto, true);
 
 		if (result.hasErrors()) {
