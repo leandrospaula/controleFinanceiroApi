@@ -65,7 +65,7 @@ public class UsuarioControl {
 		response.setDados(DTOConverter.converterUsuarioDTO(u));
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping()
 	public ResponseEntity<Resposta<UsuarioDTO>> criar(@Valid @RequestBody UsuarioDTO dto, BindingResult result) {
 		Resposta<UsuarioDTO> response = new Resposta<UsuarioDTO>();
@@ -73,6 +73,12 @@ public class UsuarioControl {
 
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(e -> response.getErros().add(e.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
+
+		Optional<Usuario> existe = service.porEmail(dto.getEmail());
+		if (existe.isPresent()) {
+			response.getErros().add("Não foi possível criar a conta, login já cadastrado na base de dados");
 			return ResponseEntity.badRequest().body(response);
 		}
 
