@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -Dspring.profiles.active=heroku -jar target/socialAPI-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -Dspring.profiles.active=heroku -jar target/controleFinanceiroAPI-0.0.1-SNAPSHOT.jar
