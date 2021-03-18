@@ -33,8 +33,6 @@ public class DespesaFixa implements Serializable{
 	@JoinColumn(name = "usuario", referencedColumnName = "id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario usuario;
-	@Column()
-	private int ano;
 	@Column(length = 1)
 	private String tipo;
 	@Column(length = 1)

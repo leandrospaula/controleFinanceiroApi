@@ -16,8 +16,6 @@ public class DespesaFixaDTO {
 	private int vencimento;
 	@NotNull(message = "Uma despesa fixa deve estar vinculada a um usuário")
 	private UsuarioDTO usuario;
-	@NotNull(message = "Uma despesa fixa deve estar vinculada a um ano")
-	private int ano;
 	private String tipo;
 	private String calculo;
 	private boolean ativo;

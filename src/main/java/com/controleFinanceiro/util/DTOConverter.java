@@ -103,7 +103,6 @@ public class DTOConverter {
 		d.setNome(dto.getNome());
 		d.setUsuario(converterDTOUsuario(dto.getUsuario(), false));
 		d.setVencimento(dto.getVencimento());
-		d.setAno(dto.getAno());
 		d.setCalculo(dto.getCalculo());
 		d.setTipo(dto.getTipo());
 		d.setValor(dto.getValor());
@@ -120,7 +119,6 @@ public class DTOConverter {
 		dto.setNome(d.getNome());
 		dto.setUsuario(converterUsuarioDTO(d.getUsuario()));
 		dto.setVencimento(d.getVencimento());
-		dto.setAno(d.getAno());
 		dto.setCalculo(d.getCalculo());
 		dto.setTipo(d.getTipo());
 		dto.setValor(d.getValor());

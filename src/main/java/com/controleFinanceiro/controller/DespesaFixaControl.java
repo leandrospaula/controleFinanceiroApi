@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.controleFinanceiro.dto.DespesaFixaDTO;
 import com.controleFinanceiro.entity.DespesaFixa;
+import com.controleFinanceiro.entity.Usuario;
 import com.controleFinanceiro.security.service.UserService;
 import com.controleFinanceiro.service.DespesaFixaService;
+import com.controleFinanceiro.service.UsuarioService;
 import com.controleFinanceiro.util.DTOConverter;
 import com.controleFinanceiro.util.Resposta;
 
@@ -30,6 +32,9 @@ public class DespesaFixaControl {
 
 	@Autowired
 	private DespesaFixaService service;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@GetMapping(path = "id/{id}")
 	public ResponseEntity<Resposta<DespesaFixaDTO>> porId(@PathVariable("id") Long id) {
@@ -72,6 +77,12 @@ public class DespesaFixaControl {
 		Resposta<DespesaFixaDTO> r = new Resposta<DespesaFixaDTO>();
 
 		DespesaFixa d = DTOConverter.converterDTODespesaFixa(dto);
+		Optional<Usuario> u = usuarioService.porId(UserService.authenticaded().getId());
+		if (!u.isPresent()) {
+			r.getErros().add("Falha ao salvar despesa fixa, erro em critério de validação");
+			return ResponseEntity.badRequest().body(r);
+		}
+		d.setUsuario(u.get());
 
 		if (result.hasErrors()) {
 			result.getAllErrors().forEach(e -> r.getErros().add(e.getDefaultMessage()));
@@ -81,7 +92,8 @@ public class DespesaFixaControl {
 		try {
 			d = service.save(d);
 		} catch (Exception e) {
-			r.getErros().add(e.getMessage());
+//			r.getErros().add(e.getMessage());
+			r.getErros().add("Erro interno no servidor, falha ao salvar");
 			return ResponseEntity.badRequest().body(r);
 		}
 
