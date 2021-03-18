@@ -8,6 +8,6 @@ import com.controleFinanceiro.entity.Despesa;
 
 public interface DespesaRepository extends JpaRepository<Despesa, Long>{
 	
-	List<Despesa> findByMesId(Long id);
+	List<Despesa> findByMesIdOrderByDataAsc(Long id);
 
 }
