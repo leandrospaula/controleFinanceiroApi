@@ -28,7 +28,7 @@ public class DespesaServiceImpl implements DespesaService {
 
 	@Override
 	public List<Despesa> porMesId(Long mesId) {
-		return repo.findByMesId(mesId);
+		return repo.findByMesIdOrderByDataAsc(mesId);
 	}
 
 	@Override
