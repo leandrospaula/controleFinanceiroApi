@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.controleFinanceiro.entity.DespesaFixa;
 import com.controleFinanceiro.repository.DespesaFixaRepository;
-import com.controleFinanceiro.security.service.UserService;
 import com.controleFinanceiro.service.DespesaFixaService;
 
 @Service

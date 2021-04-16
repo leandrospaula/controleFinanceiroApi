@@ -134,7 +134,9 @@ public class DespesaCartaoControl {
 				dc.setTerceiros(d.isTerceiros());
 				dc.setValor(d.getValor());
 				service.save(dc);
-				m.get().setTotalCartao(m.get().getTotalCartao() + dc.getValor());
+				if (!dc.isTerceiros()) {
+					m.get().setTotalCartao(m.get().getTotalCartao() + dc.getValor());
+				}
 				mesService.save(m.get());
 				mes += 1;
 				vezes -= 1;
