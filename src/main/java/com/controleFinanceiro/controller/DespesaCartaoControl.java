@@ -136,6 +136,11 @@ public class DespesaCartaoControl {
 				service.save(dc);
 				if (!dc.isTerceiros()) {
 					m.get().setTotalCartao(m.get().getTotalCartao() + dc.getValor());
+					if (m.get().getSalario() == null) {
+						m.get().setSalario(0.0);
+					}
+					m.get().setLivre(m.get().getSalario() - m.get().getTotalCartao() - m.get().getTotalFixo()
+							- m.get().getTotalGasto());
 				}
 				mesService.save(m.get());
 				mes += 1;
