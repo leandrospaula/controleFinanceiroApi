@@ -58,7 +58,8 @@ public class DespesaFixaMesControl {
 			if (d.getDespesaFixa().getCalculo().equals("A")) {
 				previsao = service.getPrevisaoAno(d.getMes().getAno(), d.getMes().getMes(), d.getDespesaFixa().getId());
 			} else {
-				previsao = service.getPrevisaoGeral(d.getMes().getAno(), d.getMes().getMes(), d.getDespesaFixa().getId());
+				previsao = service.getPrevisaoGeral(d.getMes().getAno(), d.getMes().getMes(),
+						d.getDespesaFixa().getId());
 			}
 			d.setPrevisao(previsao);
 		}
